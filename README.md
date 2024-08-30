@@ -1,5 +1,4 @@
-For Testing on Postman
-Import this line:
+For Testing on Postman, import this line:
 
 {
     "info": {
