@@ -1,27 +1,25 @@
-const projectRepository = require('../repositories/projectRepository');
-const express = require('express');
-const router = express.Router();
+const projectRepository = require("../repositories/projectRepository");
 
 class ProjectService {
-    async createProject(project) {
-        return await projectRepository.create(project);
-    }
-    
-    async getAllProjects() {
-        return await projectRepository.findAll();
-    }
-    
-    async getProjectById(id) {
-        return await projectRepository.findById(id);
-    }
+  async createProject(project) {
+    return await projectRepository.create(project);
+  }
 
-    async updateTask(id, project) {
-        return await projectRepository.update(id, project);
-    }
+  async getAllProjects() {
+    return await projectRepository.findAll();
+  }
 
-    async deleteTask(id) {
-        return await projectRepository.destroy(id);
-    }
+  async getProjectById(id) {
+    return await projectRepository.findById(id);
+  }
+
+  async updateProject(id, projectDetails) {
+    return await projectRepository.update(id, projectDetails);
+  }
+
+  async deleteProject(id) {
+    return await projectRepository.delete(id);
+  }
 }
 
 module.exports = new ProjectService();

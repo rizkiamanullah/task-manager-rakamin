@@ -1,19 +1,23 @@
-const projectService = require('../services/projectService');
+    const projectService = require("../services/projectService");
 
-class ProjectController {
-    async createProject(req, res){
+    class ProjectController {
+    async createProject(req, res) {
         const project = await projectService.createProject(req.body);
-        res.status(201).json(project);
+        res.status(201).send(project);
     }
 
-    async getAllProject(req, res) {
+    async getAllProjects(req, res) {
         const projects = await projectService.getAllProjects();
-        res.json(projects);
+        res.status(200).send(projects);
     }
 
     async getProjectById(req, res) {
         const project = await projectService.getProjectById(req.params.id);
-        res.json(project);
+        if (!project) {
+        res.status(404).send({ message: "Project not found" });
+        } else {
+        res.status(200).send(project);
+        }
     }
 
     async updateProject(req, res) {
@@ -25,6 +29,6 @@ class ProjectController {
         await projectService.deleteProject(req.params.id);
         res.status(204).send();
     }
-}
+    }
 
-module.exports = new ProjectController();
+    module.exports = new ProjectController();

@@ -1,19 +1,24 @@
-const taskService = require('../services/taskService');
+    const taskService = require("../services/taskService");
 
-class TaskController {
-    async createTask(req, res){
+    class TaskController {
+    async createTask(req, res) {
         const task = await taskService.createTask(req.body);
-        res.status(201).json(task);
+        res.status(201).send(task);
     }
 
-    async getAllTask(req, res) {
+    async getAllTasks(req, res) {
         const tasks = await taskService.getAllTasks();
-        res.json(tasks);
+        res.status(200).send(tasks);
     }
 
     async getTaskById(req, res) {
+        console.log(req.params.id);
         const task = await taskService.getTaskById(req.params.id);
-        res.json(task);
+        if (!task) {
+        res.status(404).send({ message: "Task not found" });
+        } else {
+        res.status(200).send(task);
+        }
     }
 
     async updateTask(req, res) {
@@ -25,6 +30,6 @@ class TaskController {
         await taskService.deleteTask(req.params.id);
         res.status(204).send();
     }
-}
+    }
 
-module.exports = new TaskController();
+    module.exports = new TaskController();

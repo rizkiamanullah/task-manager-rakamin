@@ -1,6 +1,4 @@
 const taskRepository = require('../repositories/taskRepository');
-const express = require('express');
-const router = express.Router();
 
 class TaskService {
     async createTask(task) {
